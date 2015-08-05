@@ -162,8 +162,7 @@ void handle_send(struct client *cl)
 {
 	int numwritten;
 
-	//numwritten = write(cl->fd, cl->rtbuff + cl->rtposition, cl->rtsize - cl->rtposition);
-	numwritten = write(cl->fd, cl->rtbuff + cl->rtposition, 1);
+	numwritten = write(cl->fd, cl->rtbuff + cl->rtposition, cl->rtsize - cl->rtposition);
 
 	if (numwritten == -1)
 	{
@@ -275,7 +274,7 @@ int main(void)
 
 	while (1)
 	{
-		numevents = epoll_wait(epoll_fd, &epoll_events, ASIO_MAX_FDS, -1);
+		numevents = epoll_wait(epoll_fd, epoll_events, ASIO_MAX_FDS, -1);
 
 		for (i = 0; i < numevents; i++)
 		{
